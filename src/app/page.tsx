@@ -375,8 +375,8 @@ export default function HomePage() {
 
         <div className="flex flex-col gap-5 items-center px-38">
           <p className="text-5xl text-center text-white font-semibold">
-            “I've tried several trading platforms, but <br /> this one stands
-            out. The intuitive UI, real- <br />
+            “I&rsquo;ve tried several trading platforms, but <br /> this one
+            stands out. The intuitive UI, real- <br />
             time analytics, and secure wallet make it <br /> my go-to for crypto
             trading. Staking has <br /> never been this easy!”
           </p>

@@ -1,103 +1,395 @@
+"use client";
+
+import { EnvelopeIcon } from "@heroicons/react/24/outline";
+import Navbar from "./components/Navbar";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
-export default function Home() {
+interface Coin {
+  id: string;
+  name: string;
+  image: string;
+  current_price: number;
+  price_change_percentage_24h: number;
+}
+
+export default function HomePage() {
+  const [activeTab, setActiveTab] = useState("tradeable");
+  const [hoveredTab, setHoveredTab] = useState<string | null>(null);
+  const [coins, setCoins] = useState<Coin[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCoins = async () => {
+      try {
+        const response = await fetch(
+          "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1"
+        );
+        const data = await response.json();
+        setCoins(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCoins();
+  }, []);
+
+  const getTopGainers = (): Coin[] => {
+    return [...coins]
+      .filter((coin) => coin.price_change_percentage_24h > 0)
+      .sort(
+        (a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h
+      )
+      .slice(0, 12);
+  };
+
+  const tabs = ["tradeable", "gainers"];
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      <Navbar />
+      <div className="bg-black p-3">
+        <div className="bg-[url('/bg.png')] h-[700px] bg-no-repeat bg-cover rounded-2xl flex gap-10 justify-between px-38 items-center">
+          <div className="flex flex-col gap-5">
+            <p className="text-6xl font-bold w-3/4">Invest for your future</p>
+            <p className="text-xl text-gray-400 font-medium w-3/4">
+              Trusted by millions to buy, sell, and manage crypto seamlessly.
+            </p>
+            <div className="flex gap-5">
+              <div className="relative">
+                <span className="absolute inset-y-0 left-0 flex items-center pl-5">
+                  <EnvelopeIcon className="h-5 w-5 text-white" />
+                </span>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="satoshi@nakamoto.com"
+                  className="w-[380px] pl-13 pr-3 py-3 h-[56px] placeholder-gray-300 border border-[#717387] rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[linear-gradient(to_bottom,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)]"
+                />
+              </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+              <button className="bg-white text-black px-[32px] py-[18px] rounded-3xl w-[130px] h-[56px] cursor-pointer">
+                Sign Up
+              </button>
+            </div>
+
+            <div className="flex gap-5 items-center">
+              <Image src="/qr.png" alt="qr code" width={88} height={88} />
+              <span>Scan to Download App iOS & Android</span>
+            </div>
+          </div>
+          <Image
+            src="/phone.png"
+            alt="phone"
+            width={506}
+            height={600}
+            className="w-[500px] h-auto"
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        <div className="grid grid-cols-2 gap-10 py-[180px] px-38 items-center">
+          <div className="grid grid-cols-2 grid-rows-2 gap-5">
+            <div className="flex flex-col justify-between border border-1 rounded-xl p-[24px] justify-between h-[193.5px] w-[278.5px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)] hover:bg-[#4AFF96] hover:text-[#003717] duration-300">
+              <p>All time volume</p>
+              <p className="text-6xl">$5.4T</p>
+            </div>
+
+            <div className="flex flex-col justify-between border border-1 rounded-xl p-[24px] justify-between h-[193.5px] w-[278.5px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)] hover:bg-[#4AFF96] hover:text-[#003717] duration-300">
+              <p>Users active</p>
+              <p className="text-6xl">62M+</p>
+            </div>
+
+            <div className="flex flex-col justify-between border border-1 rounded-xl p-[24px] justify-between h-[193.5px] w-[278.5px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)] hover:bg-[#4AFF96] hover:text-[#003717] duration-300">
+              <p>Supported countries</p>
+              <p className="text-6xl">180</p>
+            </div>
+
+            <div className="flex flex-col justify-between border border-1 rounded-xl p-[24px] justify-between h-[193.5px] w-[278.5px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)] hover:bg-[#4AFF96] hover:text-[#003717] duration-300">
+              <p>24H trading volume (USD)</p>
+              <p className="text-6xl">$2.6B</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-10 p-22">
+            <p className="text-5xl">Trusted by millions</p>
+            <div className="flex flex-col gap-5">
+              <div className="flex gap-4 bg-[#ffffff15] py-[8px] pl-[10px] pr-[20px] text-left rounded-md items-center">
+                <Image
+                  src="/icon-ai.png"
+                  alt="icon-ai"
+                  width={32}
+                  height={32}
+                />
+                <p className="text-sm">
+                  AI for investors Investment research and insights
+                </p>
+              </div>
+
+              <div className="flex gap-2 bg-[#ffffff15] py-[8px] pl-[10px] pr-[20px] text-left rounded-md items-center">
+                <Image
+                  src="/headphone.png"
+                  alt="icon-headphone"
+                  width={32}
+                  height={32}
+                />
+                <p className="text-sm">
+                  24/7 customer support, always here for you
+                </p>
+              </div>
+
+              <div className="flex gap-2 bg-[#ffffff15] py-[8px] pl-[10px] pr-[20px] text-left rounded-md items-center">
+                <Image
+                  src="/stat.png"
+                  alt="icon-stats"
+                  width={32}
+                  height={32}
+                />
+                <p className="text-sm">
+                  Trade like a Pro with our easy-to-use Trading Tools
+                </p>
+              </div>
+
+              <div className="flex gap-2 bg-[#ffffff15] py-[8px] pl-[10px] pr-[20px] text-left rounded-md items-center">
+                <Image src="/coin.png" alt="icon-coin" width={32} height={32} />
+                <p className="text-sm">
+                  Crypto journey with Web3 and crypto payments
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-[url('/gradient.png')] pt-70 mt-[-180px] bg-no-repeat bg-cover flex flex-col gap-10 px-38">
+          <p className="text-5xl font-bold">
+            Trade spot and margin. <br /> All in one powerful interface.
+          </p>
+
+          <p className="text-gray-400">
+            Door7 products run on the powerful Door7 Protocol, the largest
+            crypto marketplace.
+          </p>
+
+          <div className="relative p-[3px] bg-gradient-to-r from-[#999999]/10 to-[#FFFFFF]/10 rounded-md overflow-hidden">
+            <Image
+              src="/trade.png"
+              alt="trade"
+              width={1000}
+              height={1000}
+              className="w-full border border-[#999999] rounded-md"
+            />
+            <div className="absolute bottom-0 left-0 right-0 w-full h-[160px] backdrop-blur-xl bg-gradient-to-t from-black/80 to-transparent" />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-5 items-center px-38">
+          <p className="text-5xl font-bold">Why Door7?</p>
+          <p className="text-gray-400">
+            Simply and securely buy, sell, and manage hunreds of
+            cryptocurrencies.
+          </p>
+          <div className="grid grid-cols-3 grid-rows-2 gap-5 mt-10">
+            <div className=" flex flex-col items-center justify-between gap-2 border border-1 rounded-xl pt-[24px] pb-[40px] px-[24px] h-[400px] w-[364px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)]">
+              <div>
+                <p className="text-lg">Send and receive crypto</p>
+                <p className="text-md text-gray-400">
+                  Transfer crypto securely and instantly with ease.
+                </p>
+              </div>
+              <Image
+                src="/send.png"
+                alt="send"
+                width={1000}
+                height={1000}
+                className="w-full mt-15"
+              />
+            </div>
+
+            <div className=" flex flex-col items-center justify-between gap-2 border border-1 rounded-xl pt-[24px] pb-[40px] px-[24px] h-[400px] w-[364px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)]">
+              <div>
+                <p className="text-lg">Stay updated with crypto news</p>
+                <p className="text-md text-gray-400">
+                  Get the latest market trends and insights in one place.
+                </p>
+              </div>
+              <Image
+                src="/comp.png"
+                alt="computer"
+                width={1000}
+                height={1000}
+                className="w-[224.73px]"
+              />
+            </div>
+
+            <div className=" flex flex-col items-center justify-between gap-2 border border-1 rounded-xl pt-[24px] pb-[40px] px-[24px] h-[400px] w-[364px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)]">
+              <div>
+                <p className="text-lg">Loyalty program built for everyone</p>
+                <p className="text-md text-gray-400">
+                  Earn rewards effortlessly by engaging with our platform.
+                </p>
+              </div>
+              <Image
+                src="/loyalty.png"
+                alt="loyalty"
+                width={1000}
+                height={1000}
+                className="w-[224.73px]"
+              />
+            </div>
+
+            <div className=" flex flex-col items-center justify-between gap-2 border border-1 rounded-xl pt-[24px] pb-[40px] px-[24px] h-[400px] w-[364px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)]">
+              <div>
+                <p className="text-lg">Deposit and withdraw at any time</p>
+                <p className="text-md text-gray-400">
+                  Enjoy quick and secure deposits and withdrawls anytime.
+                </p>
+              </div>
+              <Image
+                src="/depo.png"
+                alt="deposit"
+                width={1000}
+                height={1000}
+                className="w-[224.73px]"
+              />
+            </div>
+
+            <div className="group flex flex-col items-center justify-between gap-2 border border-1 rounded-xl pt-[24px] pb-[40px] px-[24px] h-[400px] w-[364px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)]">
+              <div>
+                <p className="text-lg">Earn rewards for learning</p>
+                <p className="text-md text-gray-400">
+                  Expand your crypto knowledge and get rewarded for it.
+                </p>
+              </div>
+              <Image
+                src="/earn.png"
+                alt="earn"
+                width={1000}
+                height={1000}
+                className="w-[224.73px]"
+              />
+            </div>
+
+            <div className="group flex flex-col items-center justify-between gap-2 border border-1 rounded-xl pt-[24px] pb-[40px] px-[24px] h-[400px] w-[364px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)]">
+              <div>
+                <p className="text-lg">Save your assets, earn bonuses</p>
+                <p className="text-md text-gray-400">
+                  Secure your holdings while earning passive rewards.
+                </p>
+              </div>
+              <Image
+                src="/save.png"
+                alt="save"
+                width={1000}
+                height={1000}
+                className="w-[224.73px]"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-5 items-center p-38">
+          <p className="text-5xl font-bold text-center">
+            Explore crypto like Bitcoin, <br /> Ethereum, and Dogecoin
+          </p>
+          <p className="text-gray-400">
+            Simply and securely buy, sell, and manage hunreds of
+            cryptocurrencies.
+          </p>
+          <div className="flex bg-[#333333] p-[4px] rounded-3xl">
+            {tabs.map((tab) => {
+              const isActive = activeTab === tab && hoveredTab === null;
+              const isHovered = hoveredTab === tab;
+
+              return (
+                <button
+                  key={tab}
+                  className={`w-[120px] h-[44px] font-semibold rounded-3xl transition-all duration-200 cursor-pointer
+                ${
+                  isActive || isHovered
+                    ? "bg-white text-black"
+                    : "text-white hover:bg-white hover:text-black"
+                }`}
+                  onClick={() => setActiveTab(tab)}
+                  onMouseEnter={() => setHoveredTab(tab)}
+                  onMouseLeave={() => setHoveredTab(null)}
+                >
+                  {tab === "tradeable" ? "Tradeable" : "Top Gainers"}
+                </button>
+              );
+            })}
+          </div>
+          <div className="mt-6 text-white">
+            {loading ? (
+              <p>Loading...</p>
+            ) : (
+              <div className="grid grid-cols-6 gap-4">
+                {(activeTab === "tradeable"
+                  ? coins.slice(0, 12)
+                  : getTopGainers()
+                ).map((coin) => (
+                  <div
+                    key={coin.id}
+                    className="flex flex-col justify-between p-[20px] w-[176.67px] h-[175px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)] rounded-2xl border border-amber-50/20"
+                  >
+                    <Image
+                      src={coin.image}
+                      alt={coin.name}
+                      className="w-[40px] h-[40px] mb-2"
+                      width={1000}
+                      height={1000}
+                    />
+                    <div>
+                      <p className="font-semibold truncate overflow-hidden whitespace-nowrap">
+                        {coin.name}
+                      </p>
+                      <p
+                        className={`text-sm ${
+                          coin.price_change_percentage_24h >= 0
+                            ? "text-[#4AFF96]"
+                            : "text-red-400"
+                        }`}
+                      >
+                        ${coin.current_price}
+                      </p>
+                    </div>
+                    <p
+                      className={`text-sm font-medium text-black px-[8px] py-[3px] rounded-xl w-fit ${
+                        coin.price_change_percentage_24h >= 0
+                          ? "bg-[#4AFF96]"
+                          : "bg-red-400"
+                      }`}
+                    >
+                      {coin.price_change_percentage_24h >= 0 ? "+" : ""}
+                      {coin.price_change_percentage_24h.toFixed(2)}%
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          <button className="px-[24px] py-[14px] w-[119px] h-[48px] bg-white text-black rounded-3xl cursor-pointer">
+            See More
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-5 items-center px-38">
+          <p className="text-5xl text-center text-white font-semibold">
+            “I've tried several trading platforms, but <br /> this one stands
+            out. The intuitive UI, real- <br />
+            time analytics, and secure wallet make it <br /> my go-to for crypto
+            trading. Staking has <br /> never been this easy!”
+          </p>
+
+          <div className="flex gap-4 items-center">
+            <Image src="/profile.png" alt="profile" width={48} height={48} />
+            <div className="flex flex-col gap-1">
+              <p className="font-semibold text-md text-white">James Harden</p>
+              <p className="text-sm">DeFi Investor</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

@@ -67,7 +67,7 @@ export default function Navbar() {
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 items-center gap-3">
               <Image src="/icon.png" alt="Icon" width={32} height={32} />{" "}
-              <span>Door7</span>
+              <span className="text-white">Door7</span>
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">

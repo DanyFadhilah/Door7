@@ -197,7 +197,7 @@ export default function HomePage() {
             Simply and securely buy, sell, and manage hunreds of
             cryptocurrencies.
           </p>
-          <div className="grid grid-cols-1 grid-rows-2 lg:grid-cols-2 md:grid-cols-1 gap-5 mt-10">
+          <div className="grid grid-cols-1 grid-rows-2 lg:grid-cols-2 xl:grid-cols-3 md:grid-cols-1 gap-5 mt-10">
             <div className=" flex flex-col items-center justify-between gap-2 border border-1 rounded-xl pt-[24px] pb-[40px] px-[24px] h-[400px] w-[300px] lg:w-[350px] sm:w-[364px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)]">
               <div>
                 <p className="text-lg text-white">Send and receive crypto</p>

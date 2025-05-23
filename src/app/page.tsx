@@ -53,7 +53,7 @@ export default function HomePage() {
       <div className="bg-black p-3">
         <div className="bg-[url('/bg.png')] h-[700px] bg-no-repeat bg-cover rounded-2xl flex gap-10 justify-between sm:px-30 sm:p-30 p-10 items-center">
           <div className="flex flex-col gap-5 items-center text-center sm:items-center lg:items-start sm:text-center lg:text-left">
-            <p className="text-5xl sm:text-6xl font-bold w-3/4">
+            <p className="text-5xl sm:text-6xl font-bold w-3/4 text-white">
               Invest for your future
             </p>
             <p className="text-md sm:text-xl text-gray-400 font-medium w-3/4">
@@ -79,7 +79,7 @@ export default function HomePage() {
 
             <div className="flex gap-5 items-center">
               <Image src="/qr.png" alt="qr code" width={88} height={88} />
-              <span className="text-left">
+              <span className="text-left text-white">
                 Scan to Download App iOS & Android
               </span>
             </div>
@@ -95,29 +95,29 @@ export default function HomePage() {
 
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 py-[180px] px-10 sm:px-38 items-center">
           <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-2 gap-5">
-            <div className="flex flex-col justify-between border border-1 lg:w-full rounded-xl p-[24px] justify-between h-[193.5px] w-full sm:w-[278.5px] md:w-[220px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)] hover:bg-[#4AFF96] hover:text-[#003717] duration-300">
+            <div className="flex flex-col text-white justify-between border border-1 lg:w-full rounded-xl p-[24px] justify-between h-[193.5px] w-full sm:w-[278.5px] md:w-[220px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)] hover:bg-[#4AFF96] hover:text-[#003717] duration-300">
               <p>All time volume</p>
               <p className="text-6xl">$5.4T</p>
             </div>
 
-            <div className="flex flex-col justify-between border border-1 lg:w-full rounded-xl p-[24px] justify-between h-[193.5px] w-full sm:w-[278.5px] md:w-[220px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)] hover:bg-[#4AFF96] hover:text-[#003717] duration-300">
+            <div className="flex flex-col text-white justify-between border border-1 lg:w-full rounded-xl p-[24px] justify-between h-[193.5px] w-full sm:w-[278.5px] md:w-[220px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)] hover:bg-[#4AFF96] hover:text-[#003717] duration-300">
               <p>Users active</p>
               <p className="text-6xl">62M+</p>
             </div>
 
-            <div className="flex flex-col justify-between border border-1 lg:w-full rounded-xl p-[24px] justify-between h-[193.5px] w-full sm:w-[278.5px] md:w-[220px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)] hover:bg-[#4AFF96] hover:text-[#003717] duration-300">
+            <div className="flex flex-col text-white justify-between border border-1 lg:w-full rounded-xl p-[24px] justify-between h-[193.5px] w-full sm:w-[278.5px] md:w-[220px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)] hover:bg-[#4AFF96] hover:text-[#003717] duration-300">
               <p>Supported countries</p>
               <p className="text-6xl">180</p>
             </div>
 
-            <div className="flex flex-col justify-between border border-1 lg:w-full rounded-xl p-[24px] justify-between h-[193.5px] w-full sm:w-[278.5px] md:w-[220px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)] hover:bg-[#4AFF96] hover:text-[#003717] duration-300">
+            <div className="flex flex-col text-white justify-between border border-1 lg:w-full rounded-xl p-[24px] justify-between h-[193.5px] w-full sm:w-[278.5px] md:w-[220px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)] hover:bg-[#4AFF96] hover:text-[#003717] duration-300">
               <p>24H trading volume (USD)</p>
               <p className="text-6xl">$2.6B</p>
             </div>
           </div>
 
           <div className="flex flex-col gap-10 p-10 sm:p-22 md:p-5 lg:items-center md:items-center">
-            <p className="text-2xl font-bold sm:text-5xl text-center xl:text-left md:text-4xl">
+            <p className="text-2xl font-bold sm:text-5xl text-center xl:text-left md:text-4xl text-white">
               Trusted by millions
             </p>
             <div className="flex flex-col gap-5">
@@ -128,7 +128,7 @@ export default function HomePage() {
                   width={32}
                   height={32}
                 />
-                <p className="text-sm">
+                <p className="text-sm text-white">
                   AI for investors Investment research and insights
                 </p>
               </div>
@@ -140,7 +140,7 @@ export default function HomePage() {
                   width={32}
                   height={32}
                 />
-                <p className="text-sm">
+                <p className="text-sm text-white">
                   24/7 customer support, always here for you
                 </p>
               </div>
@@ -152,14 +152,14 @@ export default function HomePage() {
                   width={32}
                   height={32}
                 />
-                <p className="text-sm">
+                <p className="text-sm text-white">
                   Trade like a Pro with our easy-to-use Trading Tools
                 </p>
               </div>
 
               <div className="flex gap-2 bg-[#ffffff15] py-[8px] pl-[10px] pr-[20px] text-left rounded-md items-center">
                 <Image src="/coin.png" alt="icon-coin" width={32} height={32} />
-                <p className="text-sm">
+                <p className="text-sm text-white">
                   Crypto journey with Web3 and crypto payments
                 </p>
               </div>
@@ -168,7 +168,7 @@ export default function HomePage() {
         </div>
 
         <div className="bg-[url('/gradient.png')] sm:pt-70 mt-[-50px] sm:mt-[-180px] lg:mt-[-300px] md:mt-[-50px] md:pt-0 lg:pt-40 text-center xl:text-left bg-no-repeat bg-cover flex flex-col gap-5 sm:gap-10 px-10 sm:px-38">
-          <p className="text-2xl sm:text-5xl font-bold md:text-4xl">
+          <p className="text-2xl sm:text-5xl font-bold md:text-4xl text-white">
             Trade spot and margin. <br /> All in one powerful interface.
           </p>
 
@@ -190,7 +190,7 @@ export default function HomePage() {
         </div>
 
         <div className="flex flex-col gap-5 items-center px-10 sm:px-38 xl:text-left text-center">
-          <p className="text-2xl sm:text-5xl font-bold md:text-4xl">
+          <p className="text-2xl sm:text-5xl font-bold md:text-4xl text-white">
             Why Door7?
           </p>
           <p className="text-gray-400 sm:text-md text-sm">
@@ -200,7 +200,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 grid-rows-2 lg:grid-cols-2 md:grid-cols-1 gap-5 mt-10">
             <div className=" flex flex-col items-center justify-between gap-2 border border-1 rounded-xl pt-[24px] pb-[40px] px-[24px] h-[400px] w-[300px] lg:w-[350px] sm:w-[364px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)]">
               <div>
-                <p className="text-lg">Send and receive crypto</p>
+                <p className="text-lg text-white">Send and receive crypto</p>
                 <p className="text-md text-gray-400">
                   Transfer crypto securely and instantly with ease.
                 </p>
@@ -216,7 +216,9 @@ export default function HomePage() {
 
             <div className=" flex flex-col items-center justify-between gap-2 border border-1 rounded-xl pt-[24px] pb-[40px] px-[24px] h-[400px] w-[300px] lg:w-[350px] sm:w-[364px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)]">
               <div>
-                <p className="text-lg">Stay updated with crypto news</p>
+                <p className="text-lg text-white">
+                  Stay updated with crypto news
+                </p>
                 <p className="text-md text-gray-400">
                   Get the latest market trends and insights in one place.
                 </p>
@@ -232,7 +234,9 @@ export default function HomePage() {
 
             <div className=" flex flex-col items-center justify-between gap-2 border border-1 rounded-xl pt-[24px] pb-[40px] px-[24px] h-[400px] w-[300px] lg:w-[350px] sm:w-[364px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)]">
               <div>
-                <p className="text-lg">Loyalty program built for everyone</p>
+                <p className="text-lg text-white">
+                  Loyalty program built for everyone
+                </p>
                 <p className="text-md text-gray-400">
                   Earn rewards effortlessly by engaging with our platform.
                 </p>
@@ -248,7 +252,9 @@ export default function HomePage() {
 
             <div className=" flex flex-col items-center justify-between gap-2 border border-1 rounded-xl pt-[24px] pb-[40px] px-[24px] h-[400px] w-[300px] lg:w-[350px] sm:w-[364px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)]">
               <div>
-                <p className="text-lg">Deposit and withdraw at any time</p>
+                <p className="text-lg text-white">
+                  Deposit and withdraw at any time
+                </p>
                 <p className="text-md text-gray-400">
                   Enjoy quick and secure deposits and withdrawls anytime.
                 </p>
@@ -264,7 +270,7 @@ export default function HomePage() {
 
             <div className="group flex flex-col items-center justify-between gap-2 border border-1 rounded-xl pt-[24px] pb-[40px] px-[24px] h-[400px] w-[300px] lg:w-[350px] sm:w-[364px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)]">
               <div>
-                <p className="text-lg">Earn rewards for learning</p>
+                <p className="text-lg text-white">Earn rewards for learning</p>
                 <p className="text-md text-gray-400">
                   Expand your crypto knowledge and get rewarded for it.
                 </p>
@@ -280,7 +286,9 @@ export default function HomePage() {
 
             <div className="group flex flex-col items-center justify-between gap-2 border border-1 rounded-xl pt-[24px] pb-[40px] px-[24px] h-[400px] w-[300px] lg:w-[350px] sm:w-[364px] bg-[linear-gradient(to_top,_rgba(255,255,255,0)_0%,_rgba(255,255,255,0.1)_100%)]">
               <div>
-                <p className="text-lg">Save your assets, earn bonuses</p>
+                <p className="text-lg text-white">
+                  Save your assets, earn bonuses
+                </p>
                 <p className="text-md text-gray-400">
                   Secure your holdings while earning passive rewards.
                 </p>
@@ -297,7 +305,7 @@ export default function HomePage() {
         </div>
 
         <div className="flex flex-col gap-5 items-center p-10 sm:p-38">
-          <p className="text-2xl sm:text-5xl font-bold text-center md:text-4xl">
+          <p className="text-2xl sm:text-5xl font-bold text-center md:text-4xl text-white">
             Explore crypto like Bitcoin, <br /> Ethereum, and Dogecoin
           </p>
           <p className="text-gray-400 text-center">
@@ -392,7 +400,7 @@ export default function HomePage() {
             <Image src="/profile.png" alt="profile" width={48} height={48} />
             <div className="flex flex-col gap-1">
               <p className="font-semibold text-md text-white">James Harden</p>
-              <p className="text-sm">DeFi Investor</p>
+              <p className="text-sm text-white">DeFi Investor</p>
             </div>
           </div>
         </div>

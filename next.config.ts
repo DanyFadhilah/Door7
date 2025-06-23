@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
       "images.unsplash.com",
       "tailwindcss.com",
       "coin-images.coingecko.com",
+      "assets.coingecko.com",
     ],
   },
 };

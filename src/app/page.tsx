@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function HomePage() {
   return (
     <div className="bg-black p-2 h-screen">
-      <div className="bg-[url('/bg-coming-soon.svg')] h-[calc(100vh-50px)] w-full bg-no-repeat bg-cover bg-center rounded-2xl relative flex justify-center items-center px-10">
+      <div className="bg-[url('/bg-coming-soon.svg')] h-[calc(100vh-12px)] w-full bg-no-repeat bg-cover bg-center rounded-2xl relative flex justify-center items-center px-10">
         <div className="flex justify-center items-center z-10">
           <Image
             src="/logo.svg"
@@ -16,7 +16,7 @@ export default function HomePage() {
           />
         </div>
 
-        <p className="absolute bottom-8 w-full text-[20px] text-center font-semibold text-white z-10 tracking-[-2px]">
+        <p className="absolute bottom-8 w-full text-[20px] text-center font-semibold text-white z-10 tracking-[-0.05em]">
           Coming Soon
         </p>
       </div>
